@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Squid Minecraft Games - Servidor Oficial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Material+Icons" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0e0e0e;
+      color: #ddd;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+    a {
+      color: #b34747;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: #955454;
+      outline: none;
+    }
+    header {
+      background: #121212;
+      border-bottom: 2px solid #5a3434;
+      padding: 16px 24px;
+      color: #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-shadow: none;
+    }
+    header h1 {
+      font-weight: 900;
+      font-size: 1.9rem;
+      letter-spacing: 0.08em;
+      user-select: none;
+      text-shadow: none;
+      color: #ccc;
+    }
+    nav a {
+      margin-left: 28px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #b34747;
+      text-shadow: none;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 48px 30px 100px;
+      max-width: 1024px;
+      margin: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      color: #ddd;
+      text-shadow: none;
+    }
+
+    /* Hero section */
+    .hero {
+      background: #1c1c1c;
+      border-radius: 20px;
+      box-shadow:
+        0 0 12px #3c3c3c;
+      padding: 52px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+      overflow: hidden;
+      border: 2px solid #5a3434;
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .hero-text h2 {
+      font-size: 3rem;
+      color: #b34747;
+      letter-spacing: 0.06em;
+      text-shadow: none;
+    }
+    .hero-text p {
+      font-size: 1.3rem;
+      color: #c9c9c9;
+      font-weight: 600;
+      max-width: 500px;
+    }
+    .hero-text strong {
+      color: #955454;
+      text-shadow: none;
+    }
+    .hero-image {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 14px #3c3c3c;
+      max-width: 100%;
+      position: relative;
+      will-change: transform;
+      transition: transform 0.3s ease;
+      cursor: default;
+      border: 2px solid #5a3434;
+    }
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+      filter: none;
+      box-shadow: none;
+    }
+    .hero-image:hover {
+      transform: scale(1.03);
+    }
+
+    /* Sections */
+    section {
+      background: #222222;
+      border-radius: 18px;
+      padding: 36px 28px;
+      box-shadow:
+        0 0 12px #3c3c3c;
+      border: 1px solid #5a343477;
+      color: #ccc;
+      text-shadow: none;
+    }
+    section h3 {
+      margin-top: 0;
+      font-size: 2.2rem;
+      color: #b34747;
+      margin-bottom: 28px;
+      text-shadow: none;
+      font-weight: 800;
+    }
+    section p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 780px;
+      margin-bottom: 1.3rem;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    /* Gameplay highlight cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 32px;
+    }
+    .card {
+      background: #181818;
+      padding: 28px 26px;
+      border-radius: 18px;
+      box-shadow:
+        0 0 8px #3a3a3a;
+      transition: box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #4e2c2c;
+      color: #ddd;
+      text-shadow: none;
+    }
+    .card:hover {
+      box-shadow:
+        0 0 14px #4e2c2c;
+      cursor: default;
+    }
+    .card-icon {
+      font-family: 'Material Icons';
+      font-size: 54px;
+      color: #b34747;
+      text-shadow: none;
+      user-select: none;
+      padding-bottom: 18px;
+    }
+    .card h4 {
+      margin: 0 0 16px 0;
+      font-weight: 800;
+      color: #955454;
+      font-size: 1.5rem;
+      text-shadow: none;
+    }
+    .card p {
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: #ddd;
+      line-height: 1.55;
+      text-shadow: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #121212;
+      border-top: 2px solid #5a3434;
+      color: #ccc;
+      text-align: center;
+      padding: 22px 28px;
+      font-weight: 700;
+      font-size: 1rem;
+      user-select: none;
+      text-shadow: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 40px 24px;
+      }
+      .hero-image:hover {
+        transform: none;
+      }
+      main {
+        padding: 36px 20px 80px;
+      }
+      section {
+        padding: 32px 20px;
+      }
+      .cards {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <h1>Squid Minecraft Games</h1>
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="#evento">Evento</a>
+      <a href="#jugabilidad">Jugabilidad</a>
+      <a href="#unete">Únete</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Presentación del evento Squid Minecraft Games">
+      <div class="hero-text">
+        <h2>¡Bienvenidos a Squid Minecraft Games!</h2>
+        <p>
+          Un evento competitivo y divertido inspirado en los <strong>retos de supervivencia y estrategia</strong> de Squid Games, adaptado dentro de Minecraft. 
+          En este servidor, jugadores de todas las edades pueden enfrentarse en emocionantes pruebas para demostrar su habilidad, inteligencia y rapidez.
+        </p>
+        <p>
+          Combina diversión y <strong>espíritu competitivo</strong> en un mundo virtual lleno de desafíos sorprendentes. ¿Serás tú quien gane el premio mayor?
+        </p>
+      </div>
+      <div class="hero-image" role="img" aria-label="Imagen ilustrativa de jugadores de Minecraft enfrentándose en pruebas competitivas dentro de un entorno temático de Squid Games con fondo oscuro y detalles rojos brillantes">
+        <img src="https://scontent.fbog9-1.fna.fbcdn.net/v/t1.15752-9/505084835_712246168060528_2135635837469777416_n.png?stp=dst-png_s640x640&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=727UU5T0rh0Q7kNvwF6h0a3&_nc_oc=AdmqU2QcagFYNA365h7rP1Sslf_tPa3G2Qp1smPEPWIwWMHLAm15iK77uavn0QlpINsVg1v4J4rd0lCYYhjEJJ4c&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fbog9-1.fna&oh=03_Q7cD2gHkYwQrwQZrUPoL_gJng2libcthJC2Jebi1me9frH_3Zw&oe=6878103F" alt="Jugadores de Minecraft compitiendo en un mundo temático de Squid Games con fondo oscuro y luces rojas brillantes" />
+      </div>
+    </section>
+
+    <section id="evento" aria-labelledby="evento-title">
+      <h3 id="evento-title">¿De qué trata el evento?</h3>
+      <p>
+        Squid Minecraft Games es un servidor especializado donde se recrean las pruebas clásicas del famoso evento de supervivencia inspirado en Squid Game, pero con un giro muy especial dentro del universo Minecraft. 
+      cada reto está diseñado para poner a prueba tu habilidad y trabajo en equipo.
+      </p>
+      <p>
+        Nuestros juegos fomentan el respeto, la diversión sana y la pasión por la competencia. Con un entorno seguro y atractivo, es ideal para jugadores jóvenes y veteranos que buscan una experiencia emocionante y única.
+      </p>
+    </section>
+
+    <section id="jugabilidad" aria-labelledby="jugabilidad-title">
+      <h3 id="jugabilidad-title">Jugabilidad y características</h3>
+      <div class="cards" role="list">
+        <article class="card" role="listitem">
+          <span class="card-icon" aria-hidden="true">sports_esports</span>
+          <h4>Pruebas Variadas</h4>
+          <p> prepárate para competir en múltiples juegos que pondrán a prueba tu destreza y rapidez.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="card-icon" aria-hidden="true">groups</span>
+          <h4>Trabajo en Equipo</h4>
+          <p>Forma alianzas y colabora con otros jugadores para superar retos y avanzar en el evento.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="card-icon" aria-hidden="true">emoji_events</span>
+          <h4>Premios y Logros</h4>
+          <p> Si logras pasar todos los restos y ser el unico jugador en vida te ganas un premio sorpresa</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="card-icon" aria-hidden="true">schedule</span>
+          <h4>Eventos Semanales</h4>
+          <p>el evento se realizara en una semana AUN NO ESTA CONFIRMADO </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="unete" aria-labelledby="unete-title">
+      <h3 id="unete-title">¿Cómo unirte?</h3>
+      <p>
+        Unirte es muy fácil. Solo debes tener Minecraft Bedrock Edition actualizado y conectar con nuestro servidor agregando a nuestro owner:
+      </p>
+      <p style="font-weight: 700; font-size: 1.2rem; color:rgb(49, 0, 163);">Nutrikx</p>
+      <p>
+        ¡Prepárate para la diversión, la estrategia y la competencia mientras te aventuras con otros jugadores en este mundo lleno de desafíos!
+      </p>
+      <p>
+        Síguenos en nuestras redes sociales para estar al tanto de las fechas, novedades y para participar en nuestra comunidad.
+      </p>
+      <p>
+        <a href="https://www.instagram.com/ig__juanpx/?next=%2F" target="_blank" rel="noopener noreferrer">
+          <span class="material-icons" aria-hidden="true" style="vertical-align: middle;">instagram</span> Instagram
+        </a> | 
+        <a href="https://discord.gg/AzWby7yr" target="_blank" rel="noopener noreferrer">
+          <span class="material-icons" aria-hidden="true" style="vertical-align: middle;">chat</span> Discord
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    &copy; 2025 Squid Minecraft Games. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
+
